@@ -28,7 +28,7 @@ Po instalacji:
 3. LD_LIBRARY_PATH=$HOME/pgxl/lib:$LD_LIBRARY_PATH
 4. export LD_LIBRARY_PATH
 
-Deploying POstgres-XL:
+Deploying Postgres-XL:
 1. pgxc_ctl
 
 Logs:
@@ -43,4 +43,9 @@ Finished reading configuration.
 Current directory: /home/postgres/pgxc_ctl
 PGXC prepare config empty
 PGXC q
+
+The next step is to add the GTM master to the setup:
+1. $ pgxc_ctl
+2. PGXC$  add gtm master gtm localhost 20001 $dataDirRoot/gtm
+
 
