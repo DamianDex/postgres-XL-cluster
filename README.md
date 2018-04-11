@@ -1,26 +1,26 @@
 <h1>postgres-XL-cluster</h1>
 
-<h3>Instalacja niezbędnych zależności</h3>
+<h3>Instalacja niezbędnych zależności do zbudowania Postgres-XL</h3>
 <ol>
-  <li>1. yum install wget gcc readline-devel zlib-devel flex bison</li>
-2. yum install pacemaker pcs resource-agents fence-agents-all
-3. systemctl start pcsd.service
-4. systemctl enable pcsd.service
-<ol>
+  <li>yum install wget gcc readline-devel zlib-devel flex bison</li>
+  <li>yum install pacemaker pcs resource-agents fence-agents-all</li>
+  <li>systemctl start pcsd.service</li>
+  <li>systemctl enable pcsd.service</li>
+</ol>
+  
 <h3>Budowanie i instalacja Postgres-XL</h3>
-1. useradd postgres
-2. passwd postgres
-
-  Ja dodałem u siebie: postgres/postgres
-
-3. su postgres
-4. mkdir -p $HOME/pgxl/src
-5. cd $HOME/pgxl/src
-6. wget https://www.postgres-xl.org/downloads/postgres-xl-9.5r1.6.tar.bz2
-7. tar jxf postgres-xl-9.5r1.6.tar.bz2
-8. cd postgres-xl-9.5r1.6
-9. ./configure --prefix=$HOME/pgxl
-10. make install-world
+<ol>
+  <li>useradd postgres</li>
+  <li>passwd postgres</li>
+<li>su postgres</li>
+<li>mkdir -p $HOME/pgxl/src</li>
+<li>cd $HOME/pgxl/src</li>
+<li>wget https://www.postgres-xl.org/downloads/postgres-xl-9.5r1.6.tar.bz2</li>
+<li>tar jxf postgres-xl-9.5r1.6.tar.bz2</li>
+<li>cd postgres-xl-9.5r1.6</li>
+<li>./configure --prefix=$HOME/pgxl</li>
+<li>make install-world</li>
+</ol>
 
 Po instalacji:
 1. PATH=$HOME/pgxl/bin:$PATH
