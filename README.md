@@ -41,25 +41,12 @@
   <li>export dataDirRoot</li>
 </ol>
 
-<h3>Deploying Postgres-XL</h3>
+<h3>Deploying Postgres-XL cluster</h3>
 <ol>
-<li>pgxc_ctl
-  <p>
-Logs:
-/usr/bin/bash
-Installing pgxc_ctl_bash script as /home/postgres/pgxc_ctl/pgxc_ctl_bash.
-ERROR: File "/home/postgres/pgxc_ctl/pgxc_ctl.conf" not found or not a regular file. No such file or directory
-Installing pgxc_ctl_bash script as /home/postgres/pgxc_ctl/pgxc_ctl_bash.
-Reading configuration using /home/postgres/pgxc_ctl/pgxc_ctl_bash --home /home/postgres/pgxc_ctl --configuration /home/postgres/pgxc_ctl/pgxc_ctl.conf
-Finished reading configuration.
-   ******** PGXC_CTL START ***************
+  <li>pgxc_ctl<li>
+  <li>PGXC prepare config empty</li>
+</ol>
 
-Current directory: /home/postgres/pgxc_ctl
-PGXC prepare config empty
-PGXC q
-</p>
-</li>
-The next step is to add the GTM master to the setup:
+The next step is to add the GTM master to the cluster
 1. $ pgxc_ctl
 2. PGXC$ add gtm master gtm localhost 6667 $dataDirRoot/gtm
-</ol>
