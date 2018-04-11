@@ -12,21 +12,33 @@
 <ol>
   <li>useradd postgres</li>
   <li>passwd postgres</li>
-<li>su postgres</li>
-<li>mkdir -p $HOME/pgxl/src</li>
-<li>cd $HOME/pgxl/src</li>
-<li>wget https://www.postgres-xl.org/downloads/postgres-xl-9.5r1.6.tar.bz2</li>
-<li>tar jxf postgres-xl-9.5r1.6.tar.bz2</li>
-<li>cd postgres-xl-9.5r1.6</li>
-<li>./configure --prefix=$HOME/pgxl</li>
-<li>make install-world</li>
+  <li>su postgres</li>
+  <li>mkdir -p $HOME/pgxl/src</li>
+  <li>cd $HOME/pgxl/src</li>
+  <li>wget https://www.postgres-xl.org/downloads/postgres-xl-9.5r1.6.tar.bz2</li>
+  <li>tar jxf postgres-xl-9.5r1.6.tar.bz2</li>
+  <li>cd postgres-xl-9.5r1.6</li>
+  <li>./configure --prefix=$HOME/pgxl</li>
+  <li>make install-world</li>
 </ol>
 
-Po instalacji:
-1. PATH=$HOME/pgxl/bin:$PATH
-2. export PATH
-3. LD_LIBRARY_PATH=$HOME/pgxl/lib:$LD_LIBRARY_PATH
-4. export LD_LIBRARY_PATH
+<h3>Po instalacji</h3>
+<ol>
+  <li>PATH=$HOME/pgxl/bin:$PATH</li>
+  <li>export PATH</li>
+  <li>LD_LIBRARY_PATH=$HOME/pgxl/lib:$LD_LIBRARY_PATH</li>
+  <li>export LD_LIBRARY_PATH</li>
+  <li>service sshd start</li>
+  <li>
+    <h4>Passwordless SSH</h4>
+    <ol>
+      <li>ssh-keygen -t rsa</li>
+      <li>Press enter for each line</li>
+      <li>cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys</li>
+      <li>chmod og-wx ~/.ssh/authorized_keys</li>
+  </li>
+    </ol>
+</ol>
 
 Deploying Postgres-XL:
 1. pgxc_ctl
@@ -50,9 +62,6 @@ export dataDirRoot
 The next step is to add the GTM master to the setup:
 1. $ pgxc_ctl
 2. PGXC$ add gtm master gtm localhost 6667 $dataDirRoot/gtm
-
-
-service sshd start
 
 Passwordless SSH:
 1. ssh-keygen -t rsa
