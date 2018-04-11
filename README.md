@@ -1,4 +1,4 @@
-postgres-XL-cluster
+<h1>postgres-XL-cluster</h1>
 
 Instalacja niezbędnych zależności:
 1. yum install wget gcc readline-devel zlib-devel flex bison
@@ -22,11 +22,10 @@ Budowanie i instalacja Postgres-XL:
 10. make install-world
 
 Po instalacji:
-PATH=$HOME/pgxl/bin:$PATH
-export PATH
-
-LD_LIBRARY_PATH=$HOME/pgxl/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH
+1. PATH=$HOME/pgxl/bin:$PATH
+2. export PATH
+3. LD_LIBRARY_PATH=$HOME/pgxl/lib:$LD_LIBRARY_PATH
+4. export LD_LIBRARY_PATH
 
 Deploying Postgres-XL:
 1. pgxc_ctl
@@ -44,12 +43,15 @@ Current directory: /home/postgres/pgxc_ctl
 PGXC prepare config empty
 PGXC q
 
+dataDirRoot=$HOME/DATA/pgxl/nodes
+export dataDirRoot
+
 The next step is to add the GTM master to the setup:
 1. $ pgxc_ctl
-2. PGXC$  add gtm master gtm localhost 20001 $dataDirRoot/gtm
+2. PGXC$ add gtm master gtm localhost 6667 $dataDirRoot/gtm
 
 
-
+service sshd start
 
 Passwordless SSH:
 1. ssh-keygen -t rsa
