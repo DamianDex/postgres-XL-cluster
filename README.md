@@ -30,14 +30,14 @@
   <li>export LD_LIBRARY_PATH</li>
   <li>service sshd start</li>
   <li>
-    <h4>Passwordless SSH</h4>
+    <li>Passwordless SSH
     <ol>
       <li>ssh-keygen -t rsa</li>
       <li>Press enter for each line</li>
       <li>cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys</li>
       <li>chmod og-wx ~/.ssh/authorized_keys</li>
-  </li>
     </ol>
+  </li>
 </ol>
 
 Deploying Postgres-XL:
