@@ -22,11 +22,11 @@ Budowanie i instalacja Postgres-XL:
 10. make install-world
 
 Po instalacji:
-1. PATH=$HOME/pgxl/bin:$PATH
-2. export PATH
+PATH=$HOME/pgxl/bin:$PATH
+export PATH
 
-3. LD_LIBRARY_PATH=$HOME/pgxl/lib:$LD_LIBRARY_PATH
-4. export LD_LIBRARY_PATH
+LD_LIBRARY_PATH=$HOME/pgxl/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
 
 Deploying Postgres-XL:
 1. pgxc_ctl
@@ -49,3 +49,10 @@ The next step is to add the GTM master to the setup:
 2. PGXC$  add gtm master gtm localhost 20001 $dataDirRoot/gtm
 
 
+
+
+Passwordless SSH:
+1. ssh-keygen -t rsa
+Press enter for each line 
+2. cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+3. chmod og-wx ~/.ssh/authorized_keys 
