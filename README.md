@@ -47,6 +47,22 @@
   <li>PGXC prepare config empty</li>
 </ol>
 
-The next step is to add the GTM master to the cluster
-1. $ pgxc_ctl
+Dodanie GTM mastera do Clustra
+1. pgxc_ctl
 2. PGXC$ add gtm master gtm localhost 6667 $dataDirRoot/gtm
+
+Dodanie Coordinatora (x2) do Clustra
+pgxc_ctl
+add coordinator master coord1 localhost 30001 30011 $dataDirRoot/coord_master.1 none none
+add coordinator master coord1 localhost 30002 30012 $dataDirRoot/coord_master.2 none none
+
+Dodanie DataNodów (x2) do Clustra
+pgxc_ctl
+add datanode master dn1 localhost 40001 40011 $dataDirRoot/dn_master.1 none none none
+add datanode master dn2 localhost 40002 40012 $dataDirRoot/dn_master.2 none none none
+
+<h3>Stworzenie bazy testowej</h3>
+psql -p 30001 postgres
+postgres=# CREATE DATABASE testdb;
+CREATE DATABASE
+postgres=# \q
