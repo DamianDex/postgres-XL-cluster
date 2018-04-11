@@ -1,12 +1,12 @@
 <h1>postgres-XL-cluster</h1>
 
 <h3>Instalacja niezbędnych zależności do zbudowania Postgres-XL</h3>
-<ol>
-  <li>yum install wget gcc readline-devel zlib-devel flex bison</li>
-  <li>yum install pacemaker pcs resource-agents fence-agents-all</li>
-  <li>systemctl start pcsd.service</li>
-  <li>systemctl enable pcsd.service</li>
-</ol>
+```sh
+  yum install wget gcc readline-devel zlib-devel flex bison
+  yum install pacemaker pcs resource-agents fence-agents-all
+  systemctl start pcsd.service
+  systemctl enable pcsd.service
+```
   
 <h3>Budowanie i instalacja Postgres-XL</h3>
 <ol>
