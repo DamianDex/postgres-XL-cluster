@@ -1,12 +1,12 @@
 <h1>postgres-XL-cluster</h1>
 
 <h3>Instalacja niezbędnych zależności do zbudowania Postgres-XL</h3>
-```sh
-  yum install wget gcc readline-devel zlib-devel flex bison
-  yum install pacemaker pcs resource-agents fence-agents-all
-  systemctl start pcsd.service
-  systemctl enable pcsd.service
-```
+<ol>
+  <li>yum install wget gcc readline-devel zlib-devel flex bison</li>
+  <li>yum install pacemaker pcs resource-agents fence-agents-all</li>
+  <li>systemctl start pcsd.service</li>
+  <li>systemctl enable pcsd.service</li>
+</ol>
   
 <h3>Budowanie i instalacja Postgres-XL</h3>
 <ol>
@@ -42,9 +42,9 @@
 </ol>
 
 <h3>Deploying Postgres-XL</h3>
-'''
-pgxc_ctl
-'''
+<ol>
+<li>pgxc_ctl
+  <p>
 Logs:
 /usr/bin/bash
 Installing pgxc_ctl_bash script as /home/postgres/pgxc_ctl/pgxc_ctl_bash.
@@ -57,7 +57,9 @@ Finished reading configuration.
 Current directory: /home/postgres/pgxc_ctl
 PGXC prepare config empty
 PGXC q
-
+</p>
+</li>
 The next step is to add the GTM master to the setup:
 1. $ pgxc_ctl
 2. PGXC$ add gtm master gtm localhost 6667 $dataDirRoot/gtm
+</ol>
