@@ -29,7 +29,6 @@
   <li>LD_LIBRARY_PATH=$HOME/pgxl/lib:$LD_LIBRARY_PATH</li>
   <li>export LD_LIBRARY_PATH</li>
   <li>service sshd start</li>
-  <li>
     <li>Passwordless SSH
     <ol>
       <li>ssh-keygen -t rsa</li>
@@ -38,11 +37,14 @@
       <li>chmod og-wx ~/.ssh/authorized_keys</li>
     </ol>
   </li>
+  <li>dataDirRoot=$HOME/DATA/pgxl/nodes</li>
+  <li>export dataDirRoot</li>
 </ol>
 
-Deploying Postgres-XL:
-1. pgxc_ctl
-
+<h3>Deploying Postgres-XL</h3>
+'''
+pgxc_ctl
+'''
 Logs:
 /usr/bin/bash
 Installing pgxc_ctl_bash script as /home/postgres/pgxc_ctl/pgxc_ctl_bash.
@@ -56,15 +58,6 @@ Current directory: /home/postgres/pgxc_ctl
 PGXC prepare config empty
 PGXC q
 
-dataDirRoot=$HOME/DATA/pgxl/nodes
-export dataDirRoot
-
 The next step is to add the GTM master to the setup:
 1. $ pgxc_ctl
 2. PGXC$ add gtm master gtm localhost 6667 $dataDirRoot/gtm
-
-Passwordless SSH:
-1. ssh-keygen -t rsa
-Press enter for each line 
-2. cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-3. chmod og-wx ~/.ssh/authorized_keys 
