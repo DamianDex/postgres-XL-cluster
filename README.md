@@ -66,3 +66,26 @@ psql -p 30001 postgres
 postgres=# CREATE DATABASE testdb;
 CREATE DATABASE
 postgres=# \q
+
+<h3>bashrc</h3>
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+PATH=$PATH:$HOME/pgxl/bin
+export PATH
+
+PATH=$HOME/pgxl/bin:$PATH
+export PATH
+
+LD_LIBRARY_PATH=$HOME/pgxl/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+
+dataDirRoot=$HOME/DATA/pgxl/nodes
+export dataDirRoot
+
+# User specific aliases and functions
+
