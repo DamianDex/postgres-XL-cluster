@@ -350,6 +350,9 @@ $ pcs cluster cib-push dn2.xml
 
 ## Testy Failover
 
+Tworzenie 'distributted' tabeli.
+Umieszczenie w niej danych.
+Sprawdzenie jak dane się rozmieściły.
 ```sh
 [postgres@t1 ~]$ psql -h t2
 postgres=# CREATE TABLE disttab(col1 int, col2 int, col3 text) DISTRIBUTE BY HASH(col1);
