@@ -231,7 +231,6 @@ $ pcs cluster setup --name postgres-xl t1 t2 t3 t4
 ```
 
 ### Startowanie Pacemaker Cluster
-
 ```sh
 $ pcs cluster start --all
 t1: Starting Cluster...
@@ -250,7 +249,6 @@ Online: [ t1 t2 t3 t4 ]
 
 No resources
 
-
 Daemon Status:
   corosync: active/disabled
   pacemaker: active/disabled
@@ -258,7 +256,6 @@ Daemon Status:
 ```
 
 ### Ustawianie Cluster Options
-
 ```sh
 $ pcs property set stonith-enabled="false"
 $ pcs property set symmetric-cluster="false"
@@ -266,8 +263,7 @@ $ pcs property set symmetric-cluster="false"
 $ pcs resource defaults migration-threshold=1
 ```
 
-### Tworzenie GTM 
-
+### Tworzenie zasobu dla Mastera (GTM) 
 ```sh
 $ pcs cluster cib gtm.xml
 
@@ -281,8 +277,7 @@ $ pcs -f gtm.xml constraint location gtm avoids t2 t3 t4
 $ pcs cluster cib-push gtm.xml
 ```
 
-### Tworzenie koordynatora
-
+### Tworzenie zasobu dla Koordynatora
 ```sh
 $ pcs cluster cib coord.xml
 
@@ -296,8 +291,7 @@ $ pcs -f coord.xml constraint location coord avoids t1 t3 t4
 $ pcs cluster cib-push coord.xml
 ```
 
-### Tworzenie Data nodów
-
+### Tworzenie zasobów dla DataNodów (masters i slaves)
 ```sh
 $ pcs cluster cib dn1.xml
 
@@ -373,11 +367,13 @@ postgres=# SELECT xc_node_id, count(*) FROM disttab GROUP BY xc_node_id;
 (2 rows)
 ```
 
+> Zatrzymanie datanode master dn1
 ```sh
 [postgres@t1 ~]$ pgxc_ctl
 PGXC stop -m immediate datanode master dn1
 ```
 
+> Jeśli wykonamu zapytanie natychmiast po zatrzymaniu master dn1 query zwróci nam błędy
 ```sh
 [postgres@t1 ~]$ psql -h t2
 postgres=# SELECT xc_node_id, count(*) FROM disttab GROUP BY xc_node_id;
@@ -387,6 +383,7 @@ HINT:  This may happen because one or more nodes are currently unreachable, eith
  Please check if all nodes are running fine and also review max_connections and max_pool_size configuration parameters
 ```
 
+> Po chwili (maksymalnie 15 sekund) query znowu będzie zwracać poprawne wyniki. Zadziała automatyczny failover.
 ```sh
 [postgres@t1 ~]$ psql -h t2
 postgres=# SELECT xc_node_id, count(*) FROM disttab GROUP BY xc_node_id;
@@ -394,5 +391,19 @@ postgres=# SELECT xc_node_id, count(*) FROM disttab GROUP BY xc_node_id;
 ------------+-------
  -560021589 |    42
   352366662 |    58
+(2 rows)
+```
+
+> Manualny failover
+```sh
+PGXC$  failover datanode dn1
+
+testdb=# SELECT xc_node_id, count(*) FROM disttab GROUP BY xc_node_id;
+ERROR:  canceling statement due to user request
+testdb=# SELECT xc_node_id, count(*) FROM disttab GROUP BY xc_node_id;
+ xc_node_id | count 
+------------+-------
+ -560021589 |    94
+  352366662 |   106
 (2 rows)
 ```
